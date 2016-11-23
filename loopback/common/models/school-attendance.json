@@ -1,0 +1,51 @@
+{
+  "name": "SchoolAttendance",
+  "description": "School attendance rate by stage in Edinburgh.",
+  "plural": "SchoolAttendance",
+  "base": "PersistedModel",
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true
+  },
+  "mongodb": {
+    "collection": "Stats"
+  },
+  "properties": {
+    "id": {
+      "type": "number",
+      "required": true,
+      "id": true
+    },
+    "year": {
+      "type": "string",
+      "required": true
+    },
+    "zone": {
+      "type": "string",
+      "required": true,
+      "index": true
+    },
+    "school": {
+      "type": "string",
+      "required": true
+    },
+    "ratio": {
+      "type": "number",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "dataZone": {
+      "type": "belongsTo",
+      "model": "GeoJSONFeature",
+      "foreignKey": "zone",
+      "options": {
+        "validate": true,
+        "forceId": false
+      }
+    }
+  },
+  "acls": [],
+  "methods": {}
+}
